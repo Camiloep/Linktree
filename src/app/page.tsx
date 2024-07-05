@@ -8,9 +8,27 @@ import FacebookLogo from "@/components/Icons/FacebookIcon";
 import TiktokIcon from "@/components/Icons/TiktokIcon";
 import { Projects } from "@/components/Projects";
 
+import '@/styles/globals.css'
+
+const generateRandomNumber = () => {
+  return Math.floor(Math.random() * (29 - 10 + 1)) + 10;
+};
+
+const generateSpans = (count: number) => {
+  const spans = [];
+  for (let i = 0; i < count; i++) {
+    spans.push(<span key={i} style={{ '--i': generateRandomNumber() }}></span>);
+  }
+  return spans;
+};
+
+
 export default function Home() {
   return (
-    <>
+    <div className="contenedor">
+      <div className="bubbles">
+        {generateSpans(50)}
+      </div>
       <div className="max-w-sm sm:max-w-3xl lg:max-w-5xl px-4 mx-auto flex flex-col lg:grid w-full h-full grid-cols-8 gap-4 py-30 box text-[#E2E2E2] overflow-hidden py-10">
         <GlowArticle className="col-span-5 p-4 lg:flex place-items-center gap-4">
         <article className="px-8 py-4 md:flex gap-x-4 items-center justify-center h-full text-center md:text-left">
@@ -28,21 +46,20 @@ export default function Home() {
         </GlowArticle>
         <GlowArticle className="col-span-3 p-4 place-items-center gap-4">
         <a
-  href="https://github.com/Camiloep"
-  target="_blank"
-  className="flex flex-col items-center md:items-start p-6 hover:text-white text-4xl h-full text-center md:text-left"
->
-  <div className="w-full flex justify-center md:justify-end">
-    <GitHubLogo width="55px" height="64px" />
-  </div>
-  <div className="flex-1 flex flex-col md:flex-row items-center md:items-end">
-    <div className="flex gap-x-2 items-center">
-      <p>Mi GitHub</p>
-      <ArrowIcon />
-    </div>
-  </div>
-</a>
-
+          href="https://github.com/Camiloep"
+          target="_blank"
+          className="flex flex-col items-center md:items-start p-6 hover:text-white text-4xl h-full text-center md:text-left"
+        >
+          <div className="w-full flex justify-center md:justify-end">
+            <GitHubLogo width="55px" height="64px" />
+          </div>
+          <div className="flex-1 flex flex-col md:flex-row items-center md:items-end">
+            <div className="flex gap-x-2 items-center">
+              <p>Mi GitHub</p>
+              <ArrowIcon />
+            </div>
+          </div>
+        </a>
         </GlowArticle>
         <GlowArticle className="row-span-2 col-span-3  p-6">
           <p className="text-xl font-bold pb-2">Mis proyectos</p>
@@ -85,6 +102,6 @@ export default function Home() {
         </GlowArticle>
         </a>
       </div>
-    </>
+    </div>
   );
 }
