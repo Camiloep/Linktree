@@ -13,35 +13,36 @@ export default function Home() {
     <>
       <div className="max-w-sm sm:max-w-3xl lg:max-w-5xl px-4 mx-auto flex flex-col lg:grid w-full h-full grid-cols-8 gap-4 py-30 box text-[#E2E2E2] overflow-hidden py-10">
         <GlowArticle className="col-span-5 p-4 lg:flex place-items-center gap-4">
-        <article className="px-8 py-4 md:flex gap-x-4 items-center justify-center h-full">
+        <article className="px-8 py-4 md:flex gap-x-4 items-center justify-center h-full text-center md:text-left">
           <img
             src="/Images/favicon.webp"
-            className="rounded-full aspect-square w-[150px]">
-          </img>
+            className="rounded-full aspect-square w-[150px] mx-auto md:mx-0"
+          />
           <div>
-          <h1 className="font-bold text-[36px]">¡Hola!</h1>
-          <p className="text-[20px]">
+            <h1 className="font-bold text-[36px]">¡Hola!</h1>
+            <p className="text-[20px]">
               Soy un aprendiz de front-end y dedico todos mis días a aprender.
             </p>
           </div>
-          </article>
+        </article>
         </GlowArticle>
         <GlowArticle className="col-span-3 p-4 place-items-center gap-4">
-          <a
-            href="https://github.com/Camiloep"
-            target="_blank"
-            className="flex flex-col p-6 hover:text-white text-4xl h-full"
-          >
-            <div className="w-full flex justify-end">
-              <GitHubLogo width="55px" height="64px" />
-            </div>
-            <div className="flex-1 flex items-end">
-              <div className="flex gap-x-2 items-center">
-                <p>Mi GitHub</p>
-                <ArrowIcon />
-              </div>
-            </div>
-          </a>
+        <a
+  href="https://github.com/Camiloep"
+  target="_blank"
+  className="flex flex-col items-center md:items-start p-6 hover:text-white text-4xl h-full text-center md:text-left"
+>
+  <div className="w-full flex justify-center md:justify-end">
+    <GitHubLogo width="55px" height="64px" />
+  </div>
+  <div className="flex-1 flex flex-col md:flex-row items-center md:items-end">
+    <div className="flex gap-x-2 items-center">
+      <p>Mi GitHub</p>
+      <ArrowIcon />
+    </div>
+  </div>
+</a>
+
         </GlowArticle>
         <GlowArticle className="row-span-2 col-span-3  p-6">
           <p className="text-xl font-bold pb-2">Mis proyectos</p>
@@ -55,30 +56,30 @@ export default function Home() {
           <p className="text-xl font-semibold">Me encanta el desarrollo front-end y cada día me dedico a mejorar mis habilidades en React, TypeScript y Tailwind. Disfruto creando interfaces intuitivas y estilizadas, y siempre estoy buscando nuevos desafíos y aprendizajes en estas tecnologías.</p>
         </GlowArticle>
         <h1 className="col-span-8 text-2xl font-bold text-center">Mis redes</h1>
-        <a href="https://x.com/camiloep0818" className="col-span-2">
+        <a href="https://x.com/camiloep0818" target="_blank" className="col-span-2">
         <GlowArticle>
-          <Social>
+          <Social networkName="Twitter">
             <TwitterIcon  width="50px" height="50px"/>
           </Social>
         </GlowArticle>
         </a>
-        <a href="https://www.instagram.com/camilo_e.p/" className="col-span-2">
+        <a href="https://www.instagram.com/camilo_e.p/" target="_blank" className="col-span-2">
         <GlowArticle >
-          <Social>
+          <Social networkName="Instagram">
             <InstagramIcon  width="50px" height="50px"/>
           </Social>
         </GlowArticle>
         </a>
-        <a href="https://www.facebook.com/camilo.estrada.e4" className="col-span-2">
+        <a href="https://www.facebook.com/camilo.estrada.e4" target="_blank" className="col-span-2">
         <GlowArticle >
-          <Social>
+          <Social networkName="Facebook">
             <FacebookLogo  width="50px" height="50px"/>
           </Social>
         </GlowArticle>
         </a>
-        <a href="https://www.tiktok.com/@camilo_ep_" className="col-span-2">
+        <a href="https://www.tiktok.com/@camilo_ep_" target="_blank" className="col-span-2">
         <GlowArticle >
-            <Social>
+            <Social networkName="TikTok">
               <TiktokIcon  width="50px" height="50px"/>
             </Social>
         </GlowArticle>
