@@ -1,113 +1,89 @@
-import Image from "next/image";
+import ArrowIcon from "@/components/Icons/ArrowIcon";
+import GitHubLogo from "@/components/Icons/GitHubLogo";
+import Social from "@/components/Social";
+import TwitterIcon from "@/components/Icons/TwitterIcon";
+import GlowArticle from "@/components/card";
+import InstagramIcon from "@/components/Icons/InstagramIcon";
+import FacebookLogo from "@/components/Icons/FacebookIcon";
+import TiktokIcon from "@/components/Icons/TiktokIcon";
+import { Projects } from "@/components/Projects";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
+    <>
+      <div className="max-w-sm sm:max-w-3xl lg:max-w-5xl px-4 mx-auto flex flex-col lg:grid w-full h-full grid-cols-8 gap-4 py-30 box text-[#E2E2E2] overflow-hidden py-10">
+        <GlowArticle className="col-span-5 p-4 flex place-items-center gap-4">
+        <article className="px-8 py-4 flex gap-x-4 items-center justify-center h-full">
+          <img
+            src="/Images/favicon.webp"
+            className="rounded-full aspect-square w-[150px]">
+          </img>
+          <div>
+          <h1 className="font-bold text-[36px]">¡Hola!</h1>
+          <p className="text-[20px]">
+              Soy un aprendiz de front-end y dedico todos mis días a aprender.
+            </p>
+          </div>
+          </article>
+        </GlowArticle>
+        <GlowArticle className="col-span-3 p-4 place-items-center gap-4">
           <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            href="https://github.com/Camiloep"
             target="_blank"
-            rel="noopener noreferrer"
+            className="flex flex-col p-6 hover:text-white text-4xl h-full"
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
+            <div className="w-full flex justify-end">
+              <GitHubLogo width="55px" height="64px" />
+            </div>
+            <div className="flex-1 flex items-end">
+              <div className="flex gap-x-2 items-center">
+                <p>Mi GitHub</p>
+                <ArrowIcon />
+              </div>
+            </div>
           </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
+        </GlowArticle>
+        <GlowArticle className="row-span-2 col-span-3  p-6">
+          <p className="text-xl font-bold pb-2">Mis proyectos</p>
+          <Projects/>
+        </GlowArticle>
+        <GlowArticle className="col-span-5 p-6 space-y-2">
+          <p className="text-3xl font-bold">Sobre mi</p>
+          <p className="text-xl font-semibold">Actualmente estoy realizando una pasantía de mi tecnología de análisis y desarrollo de software en <a href="https://www.instagram.com/nurent.co">@<span className="underline">Nurent</span></a></p>
+        </GlowArticle>
+        <GlowArticle className="col-span-5 p-6 space-y-2">
+          <p className="text-xl font-semibold">Me encanta el desarrollo front-end y cada día me dedico a mejorar mis habilidades en React, TypeScript y Tailwind. Disfruto creando interfaces intuitivas y estilizadas, y siempre estoy buscando nuevos desafíos y aprendizajes en estas tecnologías.</p>
+        </GlowArticle>
+        <h1 className="col-span-8 text-2xl font-bold text-center">Mis redes</h1>
+        <a href="https://x.com/camiloep0818" className="col-span-2">
+        <GlowArticle>
+          <Social>
+            <TwitterIcon slot="icon" width="50px" height="50px"/>
+          </Social>
+        </GlowArticle>
         </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
+        <a href="https://www.instagram.com/camilo_e.p/" className="col-span-2">
+        <GlowArticle >
+          <Social>
+            <InstagramIcon slot="icon" width="50px" height="50px"/>
+          </Social>
+        </GlowArticle>
         </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
+        <a href="https://www.facebook.com/camilo.estrada.e4" className="col-span-2">
+        <GlowArticle >
+          <Social>
+            <FacebookLogo slot="icon" width="50px" height="50px"/>
+          </Social>
+        </GlowArticle>
         </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
+        <a href="https://www.tiktok.com/@camilo_ep_" className="col-span-2">
+        <GlowArticle >
+            <Social>
+              <TiktokIcon slot="icon" width="50px" height="50px"/>
+            </Social>
+        </GlowArticle>
         </a>
       </div>
-    </main>
+    </>
   );
 }

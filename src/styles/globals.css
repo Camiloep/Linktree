@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.blur-effect {
+    background: hsla(210, 58%, 16%, 0.28); /* Fondo azul */
+    backdrop-filter: blur(3px);
+    border-radius: 24px;
+    box-shadow:
+      0 8px 16px 0 rgb(0, 13, 255), /* Sombra roja */
+      0 2px 10px 2px rgba(0, 0, 255, 0.2), /* Sombra azul */
+      inset 0 1px 1px 0 hsla(0, 0%, 100%, 0.11),
+      0 1px 2px 0 rgba(0, 0, 255, 0.5), /* Sombra azul */
+      inset 0px 0px 30px -1px hsla(237, 58%, 16%, 0.4); /* Sombra azul */
+    box-shadow: inset 13px 1px 79px -27px rgba(0, 128, 255, 0.6);
+  }
+  
+  :root {
+    --radius: 24;
+    --backup-border: var(--backdrop);
+  }
+  
+  article {
+    --outer: 1;
+    --base: 220;
+    --spread: 200;
+  }
+  
+  /* Glow specific styles */
+  @media (min-width: 1080px) {
+    [data-glow] {
+      --border-size: calc(var(--border, 2) * 1px);
+      --spotlight-size: calc(var(--size, 150) * 1px);
+      --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+      background-image: radial-gradient(
+        var(--spotlight-size) var(--spotlight-size) at calc(var(--x, 0) * 1px)
+          calc(var(--y, 0) * 1px),
+        hsl(
+          var(--hue, 255) calc(var(--saturation, 100) * 1%)
+            calc(var(--lightness, 50) * 1%) / var(--bg-spot-opacity, 0.1)
+        ),
+        transparent
+      );
+      background-size: calc(100% + (2 * var(--border-size)))
+        calc(100% + (2 * var(--border-size)));
+      background-position: 50% 50%;
+      background-attachment: fixed;
+      position: relative;
+      touch-action: none;
+    }
+  
+    [data-glow]::before,
+    [data-glow]::after {
+      pointer-events: none;
+      content: "";
+      position: absolute;
+      inset: calc(var(--border-size) * -1);
+      border: var(--border-size) solid transparent;
+      border-radius: calc(var(--radius) * 1px);
+      background-attachment: fixed;
+      background-size: calc(100% + (2 * var(--border-size)))
+        calc(100% + (2 * var(--border-size)));
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      mask: linear-gradient(transparent, transparent),
+        linear-gradient(white, white);
+      mask-clip: padding-box, border-box;
+      mask-composite: intersect;
+    }
+  
+    [data-glow]::before {
+      background-image: radial-gradient(
+        calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+          calc(var(--x, 1) * 1px) calc(var(--y, 1) * 1px),
+        hsl(
+          0 50% 50% / var(--border-spot-opacity, 1) /* Cambio a rojo */
+        ),
+        transparent 100%
+      );    
+      filter: brightness(3);
+    }
+  
+    [data-glow]::after {
+      background-image: radial-gradient(
+        calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+          calc(var(--x, 1) * 1px) calc(var(--y, 1) * 1px),
+        hsl(0 50% 50% / var(--border-light-opacity, 1)),
+        transparent 100%
+      );
+    }
+  
+    [data-glow] [data-glow] {
+      position: absolute;
+      inset: 0;
+      will-change: filter;
+      opacity: var(--outer, 1);
+    }
+  
+    [data-glow] > [data-glow] {
+      border-radius: calc(var(--radius) * 1px);
+      border-width: calc(var(--border-size) * 20);
+      filter: blur(calc(var(--border-size) * 10));
+      background: none;
+      pointer-events: none;
+    }
+  
+    [data-glow] > [data-glow]::before {
+      inset: -10px;
+      border-width: 10px;
+    }
+  
+    [data-glow] [data-glow] {
+      border: none;
+    }
+  
+    [data-glow] :is(a, button) {
+      border-radius: calc(var(--radius) * 1px);
+      border: var(--border-size) solid transparent;
+    }
+  
+    [data-glow] :is(a, button) [data-glow] {
+      background: none;
+    }
+  
+    [data-glow] :is(a, button) [data-glow]::before {
+      inset: calc(var(--border-size) * -1);
+      border-width: calc(var(--border-size) * 1);
+    }
+  }
+  
+
+/* Quito el scroll (Para que sea invisible */
+
+::-webkit-scrollbar {
+    width: 10px;
+    display: none;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ffffff00;
+    border-radius: 5px;
+    display: none;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ffffff00;
+    border-radius: 5px;
+    display: none;
+}
+ 
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    display: none;
+}
