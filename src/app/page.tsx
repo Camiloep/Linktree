@@ -58,28 +58,28 @@ export default function Home() {
         <a href="https://x.com/camiloep0818" className="col-span-2">
         <GlowArticle>
           <Social>
-            <TwitterIcon slot="icon" width="50px" height="50px"/>
+            <TwitterIcon  width="50px" height="50px"/>
           </Social>
         </GlowArticle>
         </a>
         <a href="https://www.instagram.com/camilo_e.p/" className="col-span-2">
         <GlowArticle >
           <Social>
-            <InstagramIcon slot="icon" width="50px" height="50px"/>
+            <InstagramIcon  width="50px" height="50px"/>
           </Social>
         </GlowArticle>
         </a>
         <a href="https://www.facebook.com/camilo.estrada.e4" className="col-span-2">
         <GlowArticle >
           <Social>
-            <FacebookLogo slot="icon" width="50px" height="50px"/>
+            <FacebookLogo  width="50px" height="50px"/>
           </Social>
         </GlowArticle>
         </a>
         <a href="https://www.tiktok.com/@camilo_ep_" className="col-span-2">
         <GlowArticle >
             <Social>
-              <TiktokIcon slot="icon" width="50px" height="50px"/>
+              <TiktokIcon  width="50px" height="50px"/>
             </Social>
         </GlowArticle>
         </a>
