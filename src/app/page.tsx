@@ -13,7 +13,7 @@ export default function Home() {
     <>
       <div className="max-w-sm sm:max-w-3xl lg:max-w-5xl px-4 mx-auto flex flex-col lg:grid w-full h-full grid-cols-8 gap-4 py-30 box text-[#E2E2E2] overflow-hidden py-10">
         <GlowArticle className="col-span-5 p-4 lg:flex place-items-center gap-4">
-        <article className="px-8 py-4 flex gap-x-4 items-center justify-center h-full">
+        <article className="px-8 py-4 md:flex gap-x-4 items-center justify-center h-full">
           <img
             src="/Images/favicon.webp"
             className="rounded-full aspect-square w-[150px]">
