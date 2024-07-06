@@ -17,7 +17,7 @@ const generateRandomNumber = () => {
 const generateSpans = (count: number) => {
   const spans = [];
   for (let i = 0; i < count; i++) {
-    spans.push(<span key={i} style={{ '--i': generateRandomNumber() }}></span>);
+    spans.push(<span key={i} style={{ '--i': generateRandomNumber() } as React.CSSProperties}></span>);
   }
   return spans;
 };
