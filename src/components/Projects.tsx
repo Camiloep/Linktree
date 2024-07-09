@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import { CardPulseBorder } from './CardPulse';
 
 const BASE_URL = 'https://api.github.com/users/Camiloep/repos';
@@ -11,6 +10,7 @@ export interface GithubData {
   description: string;
   stargazers_count: number;
   html_url: string;
+  languages_url: string;
 }
 
 export const Projects: React.FC = () => {
@@ -18,11 +18,17 @@ export const Projects: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchData().then(fetchedData => {
-      if (fetchedData) {
-        setData(fetchedData);
-      }
-    });
+    const cachedData = localStorage.getItem('githubData');
+    if (cachedData) {
+      setData(JSON.parse(cachedData));
+    } else {
+      fetchData().then(fetchedData => {
+        if (fetchedData) {
+          setData(fetchedData);
+          localStorage.setItem('githubData', JSON.stringify(fetchedData));
+        }
+      });
+    }
   }, []);
 
   const fetchData = async (): Promise<GithubData[] | void> => {
@@ -39,25 +45,41 @@ export const Projects: React.FC = () => {
     }
   };
 
+  const handleMouseEnter = () => {
+    const carousel = document.querySelector('.carousel');
+    if (carousel) {
+      carousel.classList.add('paused');
+    }
+  };
+
+  const handleMouseLeave = () => {
+    const carousel = document.querySelector('.carousel');
+    if (carousel) {
+      carousel.classList.remove('paused');
+    }
+  };
+
   return (
-    <>
-      <div className='absolute text-transparent w-[400px] h-[400px] bg-white rounded-full blur-3xl opacity-10 translate-x-[320px] z-0'></div>
-      <motion.div
-        transition={{ type: 'spring', stiffness: 800, damping: 500 }}
-        className='grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[1rem] gap-x-4 gap-y-4  max-h-[400px] overflow-y-auto'
-      >
+    <div className="carousel-container">
+      <div className="carousel">
         {error && <p className='text-red-500'>{error}</p>}
         {data &&
           data.map(d => (
-            <CardPulseBorder
+            <div
               key={d.name}
-              name={d.name}
-              description={d.description}
-              stargazers_count={d.stargazers_count}
-              url={d.html_url}
-            />
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <CardPulseBorder
+                name={d.name}
+                description={d.description}
+                stargazers_count={d.stargazers_count}
+                url={d.html_url}
+                languajes={d.languages_url}
+              />
+            </div>
           ))}
-      </motion.div>
-    </>
+      </div>
+    </div>
   );
 };

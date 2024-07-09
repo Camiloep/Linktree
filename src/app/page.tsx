@@ -10,6 +10,11 @@ import { Projects } from "@/components/Projects";
 
 import '@/styles/globals.css'
 
+import AboutMe from "@/components/AboutMe";
+
+import Skills from "@/components/Skills";
+import Logo from "@/components/Icons/Logo";
+
 const generateRandomNumber = () => {
   return Math.floor(Math.random() * (29 - 10 + 1)) + 10;
 };
@@ -24,23 +29,19 @@ const generateSpans = (count: number) => {
 
 
 export default function Home() {
+
+  const url = 'https://cmrc.onrender.com/index.html'
   return (
     <div className="contenedor">
       <div className="bubbles">
         {generateSpans(50)}
       </div>
       <div className="max-w-sm sm:max-w-3xl lg:max-w-5xl px-4 mx-auto flex flex-col lg:grid w-full h-full grid-cols-8 gap-4 py-30 box text-[#E2E2E2] overflow-hidden py-10">
-        <GlowArticle className="col-span-5 p-4 lg:flex place-items-center gap-4">
-        <article className="px-8 py-4 md:flex gap-x-4 items-center justify-center h-full text-center md:text-left">
-          <img
-            src="/Images/favicon.webp"
-            className="rounded-full aspect-square w-[150px] mx-auto md:mx-0"
-          />
+        <GlowArticle className="col-span-5 p-4 lg:flex  gap-4">
+        <article className="px-8 py-4 md:flex gap-x-4 items-center  h-full  md:text-left">
+          <Logo/>
           <div>
-            <h1 className="font-bold text-[36px]">¡Hola!</h1>
-            <p className="text-[20px]">
-              Soy un aprendiz de front-end y dedico todos mis días a aprender.
-            </p>
+          <AboutMe/>
           </div>
         </article>
         </GlowArticle>
@@ -61,17 +62,26 @@ export default function Home() {
           </div>
         </a>
         </GlowArticle>
-        <GlowArticle className="row-span-2 col-span-3  p-6">
+        <GlowArticle className="row-span-2 col-span-3 p-6 space-y-2">
+          <Skills/>
+        </GlowArticle>
+        <GlowArticle className=" col-span-5  p-6">
           <p className="text-xl font-bold pb-2">Mis proyectos</p>
           <Projects/>
         </GlowArticle>
-        <GlowArticle className="col-span-5 p-6 space-y-2">
-          <p className="text-3xl font-bold">Sobre mi</p>
-          <p className="text-xl font-semibold">Actualmente estoy realizando una pasantía de mi tecnología de análisis y desarrollo de software en <a href="https://www.instagram.com/nurent.co">@<span className="underline">Nurent</span></a></p>
+        <GlowArticle className=" col-span-5  p-6 space-y-4">
+          <p className="text-3xl font-bold">Educación</p>
+          <div className="flex space-x-2">
+          <p className="text-xl font-semibold">2024</p>
+          <div>
+          <p className="text-xl font-semibold">Tecnologia en Análisis y Desarrollo de software</p>
+          <p>Servicio Nacional de Aprendizaje, <span>SENA</span></p>
+          </div>
+          </div>
         </GlowArticle>
-        <GlowArticle className="col-span-5 p-6 space-y-2">
-          <p className="text-xl font-semibold">Me encanta el desarrollo front-end y cada día me dedico a mejorar mis habilidades en React, TypeScript y Tailwind. Disfruto creando interfaces intuitivas y estilizadas, y siempre estoy buscando nuevos desafíos y aprendizajes en estas tecnologías.</p>
-        </GlowArticle>
+        {/* <GlowArticle className="col-span-8">
+
+        </GlowArticle> */}
         <h1 className="col-span-8 text-2xl font-bold text-center">Mis redes</h1>
         <a href="https://x.com/camiloep0818" target="_blank" className="col-span-2">
         <GlowArticle>

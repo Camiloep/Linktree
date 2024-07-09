@@ -192,3 +192,45 @@
       transform: translateY(-10vh) scale(1);
   }
 }
+
+.HtmlIcon {
+  transform: rotateY(0);
+}
+
+.HtmlIcon:hover {
+  transform: rotateY(3.142rad);
+}
+
+/* Carousel */
+
+.carousel-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  width: 100%;
+  animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.carousel.paused {
+  animation-play-state: paused;
+}
+
+.carousel div {
+  min-width: 300px;
+  margin-right: 1rem;
+}
+
+

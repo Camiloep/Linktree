@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   description: "Bienvenid@s a mi portfolio"
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -17,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="shortcut icon" href="/Images/favicon.webp" />
+        <link rel="shortcut icon" href='/Images/Logo.svg' />
       </head>
       <body className={`bg-black relative ${inter.className}`}>{children}</body>
     </html>
