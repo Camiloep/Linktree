@@ -75,7 +75,7 @@ export const CardPulseBorder = ({
   return (
     <motion.div variants={item} className='relative h-[110px] inline-block'>
       <a href={url} target='_blank'>
-      <div className='flex flex-col h-full items-start px-8 pb-4 justify-center rounded-md border border-solid border-slate-800 bg-black'>
+      <div className='flex flex-col h-full items-start px-8 pb-4 justify-center rounded-md border border-solid border-sky-400 shadow-[inset_13px_1px_79px_-27px_rgba(0,0,255)] '>
         <a
           href={url}
           className='flex items-center justify-between w-full underline-transparent'

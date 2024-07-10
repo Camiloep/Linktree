@@ -49,10 +49,10 @@ export default function Home() {
         <a
           href="https://github.com/Camiloep"
           target="_blank"
-          className="flex flex-col items-center md:items-start p-6 hover:text-white text-4xl h-full text-center md:text-left"
+          className="flex flex-col items-center md:items-start p-6 text-4xl h-full text-center md:text-left"
         >
           <div className="w-full flex justify-center md:justify-end">
-            <GitHubLogo width="55px" height="64px" />
+            <GitHubLogo width="55px" height="64px" className="hover:-translate-y-1 hover:translate-x-1"/>
           </div>
           <div className="flex-1 flex flex-col md:flex-row items-center md:items-end">
             <div className="flex gap-x-2 items-center">

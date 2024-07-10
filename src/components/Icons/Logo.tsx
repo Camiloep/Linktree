@@ -7,7 +7,7 @@ function Logo() {
     <svg
       width="100"
       height="100"
-      viewBox="500 375 1000 1000"
+      viewBox="490 375 1100 900"
       xmlns="http://www.w3.org/2000/svg"
       className="text-blue-300 shadow-lg transition duration-300 hover:text-blue-700 mx-auto"
     >

@@ -9,11 +9,11 @@ const AboutMe: React.FC = () => {
       "¡Hola!",
       "Mi nombre es Camilo Estrada Patiño",
       "Soy aprendiz de desarrollo de software",
-      "Me enfoco en el Front-end"
+      "Desarrollador Front-end"
     ]}
-    typeSpeed={80}
+    typeSpeed={60}
     backDelay={1100}
-    backSpeed={30}
+    backSpeed={20}
     className="text-3xl font-bold"
     loop
   />

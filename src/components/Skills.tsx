@@ -12,7 +12,7 @@ const Skills: React.FC = () => (
       <p className="text-2xl font-bold text-center">Habilidades Técnicas</p>
       <div className='flex '>
         <div className="space-y-8 mx-auto">
-            <SkillWithProgress Icon={HtmlIcon} percentage={90} />
+            <SkillWithProgress Icon={HtmlIcon} percentage={80} />
             <SkillWithProgress Icon={CssIcon} percentage={75} />
             <SkillWithProgress Icon={JsIcon} percentage={50} />
             <SkillWithProgress Icon={ReactIcon} percentage={80} />

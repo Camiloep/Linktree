@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { CardPulseBorder } from './CardPulse';
 
 const BASE_URL = 'https://api.github.com/users/Camiloep/repos';
@@ -16,6 +16,7 @@ export interface GithubData {
 export const Projects: React.FC = () => {
   const [data, setData] = useState<GithubData[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const cachedData = localStorage.getItem('githubData');
@@ -46,27 +47,25 @@ export const Projects: React.FC = () => {
   };
 
   const handleMouseEnter = () => {
-    const carousel = document.querySelector('.carousel');
-    if (carousel) {
-      carousel.classList.add('paused');
+    if (carouselRef.current) {
+      carouselRef.current.style.animationPlayState = 'paused';
     }
   };
 
   const handleMouseLeave = () => {
-    const carousel = document.querySelector('.carousel');
-    if (carousel) {
-      carousel.classList.remove('paused');
+    if (carouselRef.current) {
+      carouselRef.current.style.animationPlayState = 'running';
     }
   };
 
   return (
     <div className="carousel-container">
-      <div className="carousel">
+      <div className="carousel" ref={carouselRef}>
         {error && <p className='text-red-500'>{error}</p>}
         {data &&
-          data.map(d => (
+          [...data, ...data].map((d, index) => (  // Clonamos los elementos
             <div
-              key={d.name}
+              key={index}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
