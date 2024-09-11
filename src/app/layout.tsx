@@ -38,11 +38,13 @@ export default function RootLayout({
             fbq('init', '${process.env.NEXT_PUBLIC_PIXEL_ID}');
             fbq('track', 'PageView');
           `}
-          <noscript><img height="1" width="1" style={{ display: 'none' }} alt="meta"
-            src={`https://www.facebook.com/tr?id=${process.env.NEXT_PUBLIC_PIXEL_ID}&ev=PageView&noscript=1`}
-            /></noscript>
-
         </Script>
+        <noscript><img height="1" width="1" style={{ display: 'none' }} alt="meta"
+          src={`https://www.facebook.com/tr?id=${process.env.PIXEL_ID}&ev=PageView&noscript=1`}
+        /></noscript>
+
+        <meta name="facebook-api-access-token" content={`${process.env.FACEBOOK_API_ACCESS_TOKEN}`} />
+
       </head>
       <body className={`bg-black relative  ${poppins.className}`}>{children}</body>
     </html>
