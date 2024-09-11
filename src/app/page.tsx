@@ -1,3 +1,5 @@
+"use client"
+
 import ArrowIcon from "@/components/Icons/ArrowIcon";
 import GitHubLogo from "@/components/Icons/GitHubLogo";
 import Social from "@/components/Social";
@@ -14,6 +16,8 @@ import AboutMe from "@/components/AboutMe";
 
 import Skills from "@/components/Skills";
 import Logo from "@/components/Icons/Logo";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const generateRandomNumber = () => {
   return Math.floor(Math.random() * (29 - 10 + 1)) + 10;
@@ -30,7 +34,29 @@ const generateSpans = (count: number) => {
 
 export default function Home() {
 
-  const url = 'https://cmrc.onrender.com/index.html'
+  const [ipAddress, setIpAddress] = useState<string>('');
+  const [userAgent, setUserAgent] = useState<string>('');
+
+
+    // Obtener la IP y el User Agent del usuario
+    useEffect(() => {
+      const fetchIP = async () => {
+        try {
+          const response = await fetch('https://ipapi.co/json/');
+          const data = await response.json();
+          setIpAddress(data.ip);
+        } catch (error) {
+          console.error('Error al obtener la IP:', error);
+        }
+      };
+      fetchIP();
+      
+      // Obtener el User Agent del navegador
+      setUserAgent(navigator.userAgent);    
+    }, []);
+
+  const getCurrentTimestamp = () => Math.floor(new Date().getTime() / 1000);
+
   return (
     <div className="contenedor">
       <div className="bubbles">
@@ -46,10 +72,21 @@ export default function Home() {
         </article>
         </GlowArticle>
         <GlowArticle className="col-span-3 p-4 place-items-center gap-4">
-        <a
+        <Link
           href="https://github.com/Camiloep"
           target="_blank"
           className="flex flex-col items-center md:items-start p-6 text-4xl h-full text-center md:text-left"
+          onClick={() => {
+            window.fbq('track', 'Contact', {
+             event_name: 'Contact GitHub',
+             event_time: getCurrentTimestamp(),
+             method: 'GitHub',
+             content_category: 'Real Estate',
+             action_source: 'website',
+             client_ip_address: ipAddress,  // IP del cliente
+             client_user_agent: userAgent,  // User Agent del cliente
+           });
+         }}
         >
           <div className="w-full flex justify-center md:justify-end">
             <GitHubLogo width="55px" height="64px" className="hover:-translate-y-1 hover:translate-x-1"/>
@@ -60,7 +97,7 @@ export default function Home() {
               <ArrowIcon />
             </div>
           </div>
-        </a>
+        </Link>
         </GlowArticle>
         <GlowArticle className="row-span-2 col-span-3 p-6 space-y-2">
           <Skills/>
@@ -83,34 +120,74 @@ export default function Home() {
 
         </GlowArticle> */}
         <h1 className="col-span-8 text-2xl font-bold text-center">Mis redes</h1>
-        <a href="https://x.com/camiloep0818" target="_blank" className="col-span-2">
+        <Link href="https://x.com/camiloep0818" target="_blank" className="col-span-2" onClick={() => {
+                   window.fbq('track', 'Contact', {
+                    event_name: 'Contact Twitter',
+                    event_time: getCurrentTimestamp(),
+                    method: 'Twitter',
+                    content_category: 'Real Estate',
+                    action_source: 'website',
+                    client_ip_address: ipAddress,  // IP del cliente
+                    client_user_agent: userAgent,  // User Agent del cliente
+                  });
+                }}>
         <GlowArticle>
           <Social networkName="Twitter">
             <TwitterIcon  width="50px" height="50px"/>
           </Social>
         </GlowArticle>
-        </a>
-        <a href="https://www.instagram.com/camilo_e.p/" target="_blank" className="col-span-2">
+        </Link>
+        <Link href="https://www.instagram.com/camilo_e.p/" target="_blank" className="col-span-2" onClick={() => {
+                   window.fbq('track', 'Contact', {
+                    event_name: 'Contact Instagram',
+                    event_time: getCurrentTimestamp(),
+                    method: 'Instagram',
+                    content_category: 'Real Estate',
+                    action_source: 'website',
+                    client_ip_address: ipAddress,  // IP del cliente
+                    client_user_agent: userAgent,  // User Agent del cliente
+                  });
+                }}>
         <GlowArticle >
           <Social networkName="Instagram">
             <InstagramIcon  width="50px" height="50px"/>
           </Social>
         </GlowArticle>
-        </a>
-        <a href="https://www.facebook.com/camilo.estrada.e4" target="_blank" className="col-span-2">
+        </Link>
+        <Link href="https://www.facebook.com/camilo.estrada.e4" target="_blank" className="col-span-2" onClick={() => {
+                   window.fbq('track', 'Contact', {
+                    event_name: 'Contact Facebook',
+                    event_time: getCurrentTimestamp(),
+                    method: 'Facebook',
+                    content_category: 'Real Estate',
+                    action_source: 'website',
+                    client_ip_address: ipAddress,  // IP del cliente
+                    client_user_agent: userAgent,  // User Agent del cliente
+                  });
+                }}>
         <GlowArticle >
           <Social networkName="Facebook">
             <FacebookLogo  width="50px" height="50px"/>
           </Social>
         </GlowArticle>
-        </a>
-        <a href="https://www.tiktok.com/@camilo_ep_" target="_blank" className="col-span-2">
+        </Link>
+        <Link href="https://www.tiktok.com/@camilo_ep_" target="_blank" className="col-span-2" onClick={() => {
+                   window.fbq('track', 'Contact', {
+                    event_name: 'Contact TikTok',
+                    event_time: getCurrentTimestamp(),
+                    method: 'TikTok',
+                    content_category: 'Real Estate',
+                    action_source: 'website',
+                    client_ip_address: ipAddress,  // IP del cliente
+                    client_user_agent: userAgent,  // User Agent del cliente
+                  });
+                }}>
         <GlowArticle >
             <Social networkName="TikTok">
               <TiktokIcon  width="50px" height="50px"/>
             </Social>
         </GlowArticle>
-        </a>
+        </Link>
       </div>
     </div>
   );

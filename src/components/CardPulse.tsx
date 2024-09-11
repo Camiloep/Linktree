@@ -1,7 +1,7 @@
 'use client'
 import { ArrowUpRight, Star } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export interface isCardProps {
   name: string
@@ -36,15 +36,7 @@ export const CardPulseBorder = ({
   const [languagesData, setLanguagesData] = useState<Record<string, number> | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchData().then(fetchedData => {
-      if (fetchedData) {
-        setLanguagesData(fetchedData);
-      }
-    });
-  }, []);
-
-  const fetchData = async (): Promise<Record<string, number> | void> => {
+  const fetchData = useCallback(async (): Promise<Record<string, number> | void> => {
     try {
       const response = await fetch(languajes);
       if (!response.ok) {
@@ -56,7 +48,16 @@ export const CardPulseBorder = ({
       setError('Error al obtener datos');
       console.error('Error al obtener los datos:', error);
     }
-  };
+  }, [languajes]);
+
+  useEffect(() => {
+    fetchData().then(fetchedData => {
+      if (fetchedData) {
+        setLanguagesData(fetchedData);
+      }
+    });
+  }, [fetchData]);
+  
 
   const calculateTotal = (data: Record<string, number>) => {
     return Object.values(data).reduce((total, count) => total + count, 0);
