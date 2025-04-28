@@ -109,7 +109,7 @@ export default function Home() {
 
         </GlowArticle> */}
         <h1 className="col-span-8 text-2xl font-bold text-center">Mis redes</h1>
-        <Link href="https://x.com/camiloep0818" target="_blank" className="col-span-2" >
+        <Link href="https://x.com/milosx0818" target="_blank" className="col-span-2" >
         <GlowArticle>
           <Social networkName="Twitter">
             <TwitterIcon  width="50px" height="50px"/>
