@@ -4,10 +4,8 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'www.facebook.com',
-                port: '',
-                pathname: '/tr',
-              },
+                hostname: 'avatars.githubusercontent.com',
+            },
         ]
     }
 };

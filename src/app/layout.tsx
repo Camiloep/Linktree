@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter , Poppins } from "next/font/google";
 import "./globals.css";
-import Script from "next/script";
-import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -11,8 +9,30 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Camilo Estrada Patiño 👨‍💻",
-  description: "Bienvenid@s a mi portfolio"
+  title: "Camilo Estrada Patiño — Desarrollador de Software",
+  description: "Portfolio de Camilo Estrada Patiño. Desarrollador de software con conocimientos en HTML, CSS, JavaScript, React y TypeScript. Colombia.",
+  metadataBase: new URL("https://camiloep.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Camilo Estrada Patiño — Desarrollador de Software",
+    description: "Portfolio de Camilo Estrada Patiño. Desarrollador de software con conocimientos en HTML, CSS, JavaScript, React y TypeScript. Colombia.",
+    url: "https://camiloep.vercel.app",
+    siteName: "Camilo Estrada Patiño",
+    locale: "es_CO",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary",
+    title: "Camilo Estrada Patiño — Desarrollador de Software",
+    description: "Portfolio de Camilo Estrada Patiño. Desarrollador de software con conocimientos en HTML, CSS, JavaScript, React y TypeScript.",
+    creator: "@milosx0818",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 
@@ -22,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <link rel="shortcut icon" href='/Images/Logo.svg' />
       </head>

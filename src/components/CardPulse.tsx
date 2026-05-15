@@ -1,22 +1,31 @@
 'use client'
-import { ArrowUpRight, Star } from 'lucide-react'
+import { ArrowUpRight, Lock, Star } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { useCallback, useEffect, useState } from 'react'
+import { useRef } from 'react'
+import { LanguageMap } from '@/types/github'
 
-export interface isCardProps {
+interface CardProps {
   name: string
   description: string
   stargazers_count: number
   url: string
-  languajes: string;
+  languageData: LanguageMap
+  isPrivate?: boolean
 }
 
-export interface GithubData {
-  name: string;
-  description: string;
-  stargazers_count: number;
-  html_url: string;
-  languages_url: string;
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+}
+
+function toPercentages(data: LanguageMap) {
+  if (!data) return [];
+  const total = Object.values(data).reduce((sum, v) => sum + v, 0);
+  if (total === 0) return [];
+  return Object.entries(data).map(([language, bytes]) => ({
+    language,
+    percentage: ((bytes / total) * 100).toFixed(1),
+  }));
 }
 
 export const CardPulseBorder = ({
@@ -24,84 +33,83 @@ export const CardPulseBorder = ({
   description,
   stargazers_count,
   url,
-  languajes
-}: isCardProps) => {
-  const item = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1
-    }
-  }
-  const [languagesData, setLanguagesData] = useState<Record<string, number> | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  languageData,
+  isPrivate = false,
+}: CardProps) => {
+  const percentages = toPercentages(languageData);
+  const mouseDownX = useRef(0);
 
-  const fetchData = useCallback(async (): Promise<Record<string, number> | void> => {
-    try {
-      const response = await fetch(languajes);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status} ${response.statusText}`);
-      }
-      const jsonData = await response.json();
-      return jsonData as Record<string, number>;
-    } catch (error) {
-      setError('Error al obtener datos');
-      console.error('Error al obtener los datos:', error);
-    }
-  }, [languajes]);
+  const handleMouseDown = (e: React.MouseEvent) => {
+    mouseDownX.current = e.clientX;
+  };
 
-  useEffect(() => {
-    fetchData().then(fetchedData => {
-      if (fetchedData) {
-        setLanguagesData(fetchedData);
-      }
-    });
-  }, [fetchData]);
-  
+  const handleClick = (e: React.MouseEvent) => {
+    if (Math.abs(e.clientX - mouseDownX.current) > 5) e.preventDefault();
+  };
 
-  const calculateTotal = (data: Record<string, number>) => {
-    return Object.values(data).reduce((total, count) => total + count, 0);
-  }
+  const cardContent = (
+    <>
+      <span className="flex items-center justify-between w-full">
+        <span className="flex gap-x-1 items-center">
+          {isPrivate
+            ? <Lock size={13} className="text-slate-400 shrink-0" />
+            : <ArrowUpRight color="#BBBBBB" size={12} />
+          }
+          <span className="text-lg font-bold text-White-Custom">{name}</span>
+        </span>
+        <span className="flex items-center text-sm gap-x-1 text-slate-200">
+          {isPrivate ? (
+            <span className="text-[11px] text-slate-400 border border-slate-600 rounded px-1">
+              Privado
+            </span>
+          ) : (
+            <>
+              <Star size={14} />
+              <p>{stargazers_count}</p>
+            </>
+          )}
+        </span>
+      </span>
+      {percentages.length > 0 ? (
+        <p className="text-[13px] text-Text-Custom">
+          {percentages.map(({ language, percentage }) => (
+            <span key={language}>{`${language}: ${percentage}% `}</span>
+          ))}
+        </p>
+      ) : (
+        <p className="text-[13px] text-slate-500 italic">
+          {isPrivate ? 'Contenido privado' : description}
+        </p>
+      )}
+    </>
+  );
 
-  const calculatePercentages = (data: Record<string, number>, total: number) => {
-    return Object.entries(data).map(([language, count]) => ({
-      language,
-      percentage: ((count / total) * 100).toFixed(2)
-    }));
-  }
-
-  const total = languagesData ? calculateTotal(languagesData) : 0;
-  const percentages = languagesData ? calculatePercentages(languagesData, total) : [];
+  const cardClass =
+    'flex flex-col h-full items-start px-8 pb-4 justify-center rounded-md border border-solid shadow-[inset_13px_1px_79px_-27px_rgba(0,0,255)] ' +
+    (isPrivate
+      ? 'border-slate-700 opacity-70 cursor-default'
+      : 'border-sky-400');
 
   return (
-    <motion.div variants={item} className='relative h-[110px] inline-block'>
-      <a href={url} target='_blank'>
-      <div className='flex flex-col h-full items-start px-8 pb-4 justify-center rounded-md border border-solid border-sky-400 shadow-[inset_13px_1px_79px_-27px_rgba(0,0,255)] '>
+    <motion.div
+      variants={item}
+      whileHover={isPrivate ? {} : { scale: 1.03, transition: { duration: 0.2 } }}
+      className="relative h-[110px] inline-block"
+    >
+      {isPrivate ? (
+        <div className={cardClass}>{cardContent}</div>
+      ) : (
         <a
           href={url}
-          className='flex items-center justify-between w-full underline-transparent'
-          target='_blank'
-          rel='noopener'
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cardClass}
+          onMouseDown={handleMouseDown}
+          onClick={handleClick}
         >
-          <span className='flex gap-x-1'>
-            <span className='text-lg font-bold text-White-Custom'>{name}</span>
-            <ArrowUpRight color='#BBBBBB' size={12} />
-          </span>
-          <span className='flex items-center text-sm gap-x-1 text-slate-200'>
-            <Star size={14} />
-            <p>{stargazers_count}</p>
-          </span>
+          {cardContent}
         </a>
-        {error && <p className='text-red-500'>{error}</p>}
-        {percentages.length > 0 ? (
-          <p className='text-[13px] text-Text-Custom'>
-            {percentages.map(({ language, percentage }) => (
-              <span key={language}>{`${language}: ${percentage}% `}</span>
-            ))}
-          </p>
-        ) : (<p className='text-[13px] text-Text-Custom'>{description}</p>)}
-      </div>
-      </a>
+      )}
     </motion.div>
-  )
+  );
 }

@@ -157,39 +157,50 @@
 }
 
 
-/* Bubbles */
+/* Particles */
 
-.contenedor{
+.contenedor {
   overflow: hidden;
 }
 
-.bubbles{
+.bubbles {
   position: fixed;
-  display: flex;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
 }
 
-.bubbles span{
-  position: relative;
-  min-width: 30px;
-  height: 30px;
-  background: #4fc3dc;
-  margin: 0 4px;
-  border-radius: 100%;
-  box-shadow: 0 0 0 10px #4fc3dc44, 0 0 50px #4fc3dc, 0 0 100px #4fc3dc;
-  animation: animate 15s linear infinite;
-  animation-duration: calc(120s / var(--i));
+.bubbles span {
+  position: absolute;
+  bottom: -60px;
+  left: var(--left);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--color);
+  opacity: 0;
+  box-shadow:
+    0 0 6px 2px var(--color),
+    0 0 20px 6px var(--color),
+    0 0 50px 10px var(--color);
+  animation: particle-float var(--duration) linear var(--delay) infinite;
 }
 
-.bubbles span:nth-child(even){
-  background: #ffffff;
-  box-shadow: 0 0 0 10px #ffffff62, 0 0 50px #ffffff, 0 0 100px #ffffff;
-}
-@keyframes animate{
-  0%{
-      transform: translateY(100vh) scale(0);
+@keyframes particle-float {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.2);
+    opacity: 0;
   }
-  100%{
-      transform: translateY(-10vh) scale(1);
+  12% {
+    opacity: var(--opacity);
+  }
+  80% {
+    opacity: calc(var(--opacity) * 0.6);
+  }
+  100% {
+    transform: translateY(-110vh) translateX(var(--drift)) scale(1);
+    opacity: 0;
   }
 }
 
@@ -212,20 +223,8 @@
 .carousel {
   display: flex;
   width: max-content;
-  animation: scroll 60s linear infinite;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50%));
-  }
-}
-
-.carousel.paused {
-  animation-play-state: paused;
+  will-change: transform;
+  user-select: none;
 }
 
 .carousel div {
